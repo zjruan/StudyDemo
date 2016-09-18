@@ -1,0 +1,23 @@
+{
+  "name": "sp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-if": "^2.0.1",
+    "gulp-less": "^3.1.0",
+    "gulp-plumber": "^1.1.0",
+    "less": "^2.7.1",
+    "path": "^0.12.7",
+    "sprity": "^1.0.8",
+    "sprity-css": "^1.0.2",
+    "sprity-less": "^1.0.3",
+    "sprity-sass": "^1.0.4"
+  }
+}

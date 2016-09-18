@@ -1,0 +1,59 @@
+.icon {
+  background-image: url('../images/sprite.png');
+}
+
+.icon-wanghaoming {
+  background-position: -0px -0px;
+  width: 78px;
+  height: 78px;
+}
+.icon-hanjing {
+  background-position: -0px -78px;
+  width: 78px;
+  height: 78px;
+}
+.icon-liushuo {
+  background-position: -0px -156px;
+  width: 78px;
+  height: 78px;
+}
+.icon-yangrui {
+  background-position: -0px -234px;
+  width: 78px;
+  height: 78px;
+}
+.icon-wangyue {
+  background-position: -0px -312px;
+  width: 78px;
+  height: 78px;
+}
+.icon-limin {
+  background-position: -0px -390px;
+  width: 78px;
+  height: 78px;
+}
+.icon-zhongwan {
+  background-position: -0px -468px;
+  width: 78px;
+  height: 78px;
+}
+.icon-miaomiao {
+  background-position: -0px -546px;
+  width: 139px;
+  height: 128px;
+}
+.icon-qwxx {
+  background-position: -0px -674px;
+  width: 139px;
+  height: 129px;
+}
+.icon-wth {
+  background-position: -0px -803px;
+  width: 139px;
+  height: 129px;
+}
+.icon-xxff {
+  background-position: -0px -932px;
+  width: 139px;
+  height: 129px;
+}

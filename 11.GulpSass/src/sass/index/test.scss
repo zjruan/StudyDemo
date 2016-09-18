@@ -1,0 +1,11 @@
+body {
+  color: red;
+  .h {
+    font-size: 16px;
+    border-radius: 4px;
+    transition: 1s;
+  }
+  &.container{
+    font-weight: 700;
+  }
+}

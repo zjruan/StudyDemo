@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Rap Demo</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.js" integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
+	<script src="http://rap.taobao.org/rap.plugin.js?projectId=7504&mode=0"></script>
+</head>
+<body>
+	<script>
+		$(function(){
+		
+			$.get('/getVideoList.json').done(function(data){
+				console.log(data);
+			})
+		})
+		
+	</script>
+</body>
+</html>

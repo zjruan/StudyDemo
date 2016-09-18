@@ -1,0 +1,18 @@
+{
+  "name": "08.node-ftp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "ftp": "node tools/ftp",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sftp": "^0.1.5",
+    "gulp-util": "^3.0.7",
+    "vinyl-ftp": "^0.4.5"
+  }
+}

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ECharts Demo</title>
+  <script src="echarts.js"></script>
+  <style>
+    #main{
+      width:600px;
+      height: 400px;
+    }
+    #pie {
+      width: 80px;
+      height:80px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Echarts Demo</h1>
+  <div id="main"></div>
+  <div id='pie'></div>
+  <script>
+    var myChart = echarts.init(document.getElementById('main'));
+    var myPie = echarts.init(document.getElementById('pie'));
+   
+    var data = {
+        times: ['2001','2002','2003','2004','2005','2006','2007','2008'],
+        values: [12,42,4,3,12,5,67,1]
+      }
+    var option = {
+      title: {
+          text: '折线图堆叠'
+      },
+      tooltip: {},
+      legend: {
+          data:['邮件营销']
+      },
+      xAxis: {
+          data: []
+      },
+      yAxis: {},
+      series: [
+          {
+              name:'邮件营销',
+              type:'line',
+              data:[]
+          }
+      ]
+    };
+
+
+
+   
+    myChart.setOption(option);
+
+   myChart.showLoading();
+    setTimeout(function(){
+      option.xAxis.data = data.times;
+      option.series[0].data = data.values;
+      myChart.hideLoading();
+      myChart.setOption({
+        xAxis: {
+            data: data.times
+        },
+       series: {
+              name:'邮件营销',
+              data:data.values
+          }
+      });
+
+    },1000)
+
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script data-main="../js/pages/index" src="../js/libs/require.js"></script>
+  <style>
+    .radius{
+      border-radius: 50px;
+      background: lightblue;
+      width: 100px;
+      height: 100px;
+      line-height: 100px;
+      text-align: center;
+      -webkit-transition:1s;
+    }
+  </style>
+  <script>
+    var dd = document.getElementsByClassName('radius');
+    if(dd){
+      setTimeout(function(){
+        dd[0].style.width = '200px';
+      },1000)
+      
+    }
+  </script>
+</head>
+<body>
+  	<h1>requireJs</h1>
+    <div class="radius">25%</div>
+</body>
+</html>

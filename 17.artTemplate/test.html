@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src = './dist/template-native-debug.js'></script>
+</head>
+<body>
+  <div id="wrapper"></div>
+
+  <script id="temp" type="text/template">
+    <% if(h2){ %>
+      <h1><%= '\<\%'+title %></h1>
+    <% }else{ %>
+      <h2><%= '\<\%'+title %></h2>
+    <% } %>
+  </script>
+  <script>
+    wrapper.innerHTML = template('temp',{title: '测试'})
+  </script>
+</body>
+</html>

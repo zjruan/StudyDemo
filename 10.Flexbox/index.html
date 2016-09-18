@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Flexbox Demo</title>
+  <style>
+    a:link, a:visited, a:active{
+      color: #666;
+    }
+    .container {
+      width: 800px;
+      margin: 0 auto ;
+    }
+    .fb{
+      display: flex;
+      flex-grow: 1;
+      border: 1px solid #999;
+      width: 100px;
+      flex-wrap: wrap;
+    }
+    .flexbox {
+      display: flex;
+      width: 70%;
+      height: 102px;
+      border: 1px solid #999;
+    }
+    .flexbox.big{
+      height: 220px;
+    } 
+    .flexbox.sm{
+      height: 52px;
+    } 
+    .flexbox.sm.bigger{
+      height: 104px;
+    } 
+
+    .sm .item{
+      width: 50px;
+      height: 50px;
+    }
+    .sm .item.wide{
+      width: 150px;
+    }
+    .sm .item.bigger{
+      height: 80px;
+    }
+    .flex-inline {
+      display: inline-flex;
+      width: 70%;
+      height: 102px;
+      border: 1px solid #999;
+    }
+    .item {
+      width: 100px;
+      height: 100px;
+      border: 1px solid green;
+      background: lightblue;
+    }
+    .wItem{
+      width: 50px;
+      border: 1px solid green;
+      background: lightblue;
+    }
+    .wItem2{
+      width: 60px;
+      border: 1px solid green;
+      background: lightblue;
+    }
+
+    .item-noheight{
+      min-width: 50px;
+      border: 1px solid green;
+      background: lightblue;
+    }
+
+    .rr-wr {
+      flex-flow: row-reverse wrap-reverse;
+    }
+
+    .order1{
+      order: 1;
+    }
+    .fg-1 {
+      flex-grow: 1;
+    }
+    .fg-0 {
+      flex-grow: 0;
+    }
+    .fg-2{
+      flex-grow:2;
+    }
+
+    .fls_0{
+      flex-shrink: 0
+    }
+    .fls_4{
+      flex-shrink: 4
+    }
+
+    .ac-stretch {
+      align-content: stretch;
+    }
+    .ac-fs {
+      align-content: flex-start;
+    }
+    .ac-fe {
+      align-content: flex-end;
+    }
+    .ac-center {
+      align-content: center;
+    }
+    .ac-sb {
+      align-content: space-between;
+    }
+    .ac-sa {
+      align-content: space-around;
+    }
+
+
+    /* 导航 */
+    .nav-right{
+      position: fixed;
+      top: 200px;
+      right: 0;
+      width: 250px;
+    }
+    .nav-right > ul {
+      padding: 0;
+    }
+
+    .nav-right li {
+      list-style: none;
+      margin: 15px 0;
+    }
+
+    .anchor-list{
+      position: relative;
+    }
+
+    .anchor-list > a {
+      position: absolute;
+      top:-100px;
+    }
+  </style>
+  <script>
+    
+    if(typeof [].forEach !== 'function') {
+      alert('您的浏览器过于老旧，请使用最新的浏览器！');
+    }
+    var GUID = 1;
+
+    function domReady(){
+      var titles = document.querySelectorAll('h2'),
+          aList = [],
+          containerDom = document.querySelector('.container');
+
+      titles.forEach(function (item, index, titles) {
+        var itemStr = item.innerText;
+        var anchorPoint = 'anchor_' + GUID++;
+        aList.push('<li><a href="#' + anchorPoint + '" >' + itemStr + '</a></li>');
+        var divDom = document.createElement('div');
+        divDom.className = 'anchor-list';
+        divDom.innerHTML = '<a name="'+ anchorPoint +'"></a>';
+        containerDom.insertBefore(divDom, item);
+      });
+      var divNavDom = document.createElement('div');
+      divNavDom.className = 'nav-right';
+      divNavDom.innerHTML = '<ul>'+ aList.join('') +'</ul>';
+
+      containerDom.insertBefore(divNavDom, containerDom.firstChild);
+    }
+    document.addEventListener('DOMContentLoaded',  domReady, false);
+
+
+
+    function column(){
+      var demoDom = document.getElementById('demoDom');
+      demoDom.children[1].innerHTML = "item2<br>cur H:" + getComputedStyle(demoDom.children[1]).height;
+      demoDom.style.flexDirection = 'column';
+    }
+    function row(){
+      var demoDom = document.getElementById('demoDom');
+      demoDom.children[2].innerHTML = "item3<br>cur H:" + getComputedStyle(demoDom.children[2]).height;
+      demoDom.style.flexDirection = 'row'; 
+    }
+  </script>
+</head>
+<body>
+  <div class="container">
+    <h1>Flexbox Demo</h1>
+    <blockquote>
+    </blockquote>
+
+    <hr>
+    <h2>Flex Container</h2>
+    <hr>
+    <h2> 弹性容器: display</h2>
+    <p>值: flex | inline-flex</p>
+    <div class="flex-inline">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+      <p>display: inline-flex</p>
+    </div>
+    测试文字
+    <h2>弹性框方向：flex-direction</h2>
+    <p>值：row | row-reverse | column | column-reverse  默认：row</p>
+    <div class="flexbox">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+    </div>
+
+    <h2>弹性框换行：flex-wrap</h2>
+    <p>值：nowrap | wrap | wrap-reverse  默认：nowrap</p>
+    <div class="flexbox">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+      <div class="item">item4</div>
+      <div class="item">item5</div>
+      <div class="item">item6</div>
+      <div class="item">item7</div>
+    </div>
+
+    <h2>弹性框流（简写）：flex-flow</h2>
+    <p>默认：row nowrap</p>
+    <div class="flexbox big rr-wr">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+      <div class="item">item4</div>
+      <div class="item">item5</div>
+      <div class="item">item6</div>
+      <div class="item">item7</div>
+    </div>
+
+    <hr>
+    <h2>Flex Item</h2>
+    <hr>
+    <h2>弹性框排序：order</h2>
+    <p>默认：0</p>
+    <div class="flexbox">
+      <div class="item">item1</div>
+      <div class="item">item2</div>
+      <div class="item order1">item3 <br> order:1</div>
+      <div class="item">item4</div>
+      <div class="item">item5</div>
+      <div class="item">item6</div>
+      <div class="item">item7</div>
+    </div>
+
+    <h2>弹性框增长：flex-grow</h2>
+    <p>默认：0</p>
+    <p>扩展剩余空间的增长因子，widthItem2 = wI1 + 剩余宽度/3 *1，widthItem2 = wI1 + 剩余宽度/3 *2</p>
+    <div class="flexbox">
+      <div class="item fg-0">item1<br>flex-grow:0</div>
+      <div class="item fg-1">item2<br>flex-grow:1</div>
+      <div class="item fg-2">item3<br>flex-grow:2</div>
+    </div>
+
+    <h2>弹性框收缩：flex-shrink</h2>
+    <p>默认：1</p>
+    <div class="flexbox">
+      <div class="item fls_0" style="background:lightcoral">item1<br>flex-shrink：0</div>
+      <div class="item fls_4" style="background:lightcoral">item2<br>flex-shrink：4</div>
+      <div class="item">item3</div>
+      <div class="item">item4</div>
+      <div class="item">item5</div>
+      <div class="item">item6</div>
+      <div class="item">item7</div>
+    </div>
+
+    <h2>弹性框伸缩基准：flex-basis</h2>
+    <p>类似“width”，默认值：auto</p>
+    <div class="flexbox">
+      <div class="item ">item1<br></div>
+      <div class="item ">item2<br></div>
+      <div class="item">item3</div>
+      <div class="item">item4</div>
+      <div class="item">item5</div>
+      <div class="item">item6</div>
+      <div class="item">item7</div>
+    </div>
+
+    <h2>弹性框“Flex”属性（简写）</h2>
+    <p>增长因数、收缩因数和伸缩基准值，“flex”属性设置了弹性框长度的组成</p>
+
+    <hr>
+    <h2>对齐</h2>
+    <hr>
+    <h2>弹性框对齐方式：justify-content</h2>
+    <p>值：flex-start | flex-end | center | space-between | space-around 默认值：flex-start</p>
+    <div>
+      <div class="flexbox sm" style="justify-content:space-between">
+        <div class="item ">item1<br></div>
+        <div class="item wide">item2<br>flex-start</div>
+        <div class="item">item3</div>
+      </div>
+      <div class="flexbox sm" style="justify-content:flex-end">
+        <div class="item ">item1<br></div>
+        <div class="item wide">item2<br>flex-end</div>
+        <div class="item">item3</div>
+      </div>
+      <div class="flexbox sm" style="justify-content:flex-center">
+        <div class="item ">item1<br></div>
+        <div class="item wide">item2<br>flex-center</div>
+        <div class="item">item3</div>
+      </div>
+      <div class="flexbox sm" style="justify-content:space-between">
+        <div class="item ">item1<br></div>
+        <div class="item wide">item2<br>space-between</div>
+        <div class="item">item3</div>
+      </div>
+      <div class="flexbox sm" style="justify-content:space-around">
+        <div class="item ">item1<br></div>
+        <div class="item wide">item2<br>space-around</div>
+        <div class="item">item3</div>
+      </div>
+    </div>
+
+    <h2>弹性元素内容对齐：align-content</h2>
+    <p>值：stretc | flex-start | flex-end | center | space-between | space-around 默认值：stretch</p>
+
+    <div class="flexbox big">
+      <div class="fb sm ac-stretch">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+      <div class="fb sm ac-fs">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+      <div class="fb sm ac-fe">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+      <div class="fb sm ac-center">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+      <div class="fb sm ac-sb">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+      <div class="fb sm ac-sa">
+        <div class="wItem">item1</div>
+        <div class="wItem2">item2</div>
+        <div class="wItem">item3</div>
+      </div>
+    </div>
+   
+
+    <h2>弹性元素对齐：align-items</h2>
+    <p>flex-start | flex-end | center | baseline | stretch 默认值：stretch</p>
+    <p>可以设置弹性元素在容器侧轴上的对齐方式，与“justify-content”功能相似但是方向垂直。“align-items”设置弹性框的所有子元素的对齐方式，包括匿名弹性元素。元素可以通过单独设置“align-self”来覆盖该属性。（对于匿名弹性元素，“align-self'”属性总是与“align-items”相同。）</p>
+    <div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:stretch">
+        <div class="item ">item1<br></div>
+        <div class="item wide bigger">item2<br>stretch</div>
+        <div class="item">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:baseline">
+        <div class="item" style="line-height:50px;background:lightcoral">item1<br></div>
+        <div class="item wide bigger">item2<br>baseline</div>
+        <div class="item">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:flex-start">
+        <div class="item ">item1<br></div>
+        <div class="item wide bigger">item2<br>flex-start</div>
+        <div class="item">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:flex-end">
+        <div class="item ">item1<br></div>
+        <div class="item wide bigger">item2<br>flex-end</div>
+        <div class="item">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:center">
+        <div class="item ">item1<br></div>
+        <div class="item wide bigger">item2<br>center</div>
+        <div class="item">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+    </div>
+
+    <h2>弹性元素自对齐：align-self</h2>
+    <p>值：auto | flex-start | flex-end | center | baseline | stretch 默认值：auto</p>
+    <p>可以设置弹性元素在容器侧轴上的对齐方式，与“justify-content”功能相似但是方向垂直。“align-items”设置弹性框的所有子元素的对齐方式，包括匿名弹性元素。元素可以通过单独设置“align-self”来覆盖该属性。（对于匿名弹性元素，“align-self'”属性总是与“align-items”相同。）</p>
+    <div>
+      <div class="flexbox sm bigger" style="justify-content:space-between;align-items:stretch">
+        <div class="item ">item1<br></div>
+        <div class="item wide bigger">item2<br>stretch</div>
+        <div class="item" style="align-self: center;background:lightcoral">item3</div>
+        <div class="item-noheight">item4<br>undifined height</div>
+      </div>
+    </div>
+
+    <hr>
+    <h2>问题记录</h2>
+    <hr>
+    <p>
+      flex问题记录：Chrome 版本 51.0.2704.103 m <br>
+      flex-direction: column 或者 column-reverse 时，当 items 的总高度大于 container 高度时，
+      导致部分item高度被压缩,这时使用 js 改变 flex-direction 为 row 或 row-reverse ，
+      若此时 items 的总宽度小于 container 的宽度时，
+      原本被压缩的item高度没有被“还原”，还是原来压缩的高度。
+      使用开发者工具，查看 item 的样式，便发现高度的异常
+    </p>
+    <button onclick="column()">flex-direction:column</button><button onclick="row()">flex-direction:row</button>
+    <div id="demoDom" class="flexbox big">
+      <div class="item">item1<br>defalut H:100px</div>
+      <div class="item">item2</div>
+      <div class="item">item3</div>
+    </div>
+  </div>
+</body>
+</html>
