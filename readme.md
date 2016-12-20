@@ -1,4 +1,4 @@
-# Git Study （dev 分支 的子分支）
+# Git Study
 
 > git is a distributed version control system  
 git is a free software
